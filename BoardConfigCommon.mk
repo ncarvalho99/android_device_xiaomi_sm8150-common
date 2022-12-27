@@ -98,19 +98,26 @@ TARGET_INIT_VENDOR_LIB ?= //$(COMMON_PATH):init_xiaomi_msmnile
 TARGET_RECOVERY_DEVICE_MODULES ?= init_xiaomi_msmnile
 
 # Kernel
-BOARD_BOOT_HEADER_VERSION := 2
-BOARD_KERNEL_BASE := 0x00000000
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 loop.max_part=7 androidboot.usbcontroller=a600000.dwc3
-BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
-BOARD_KERNEL_CMDLINE += kpti=off
-BOARD_KERNEL_IMAGE_NAME := Image
-BOARD_KERNEL_PAGESIZE := 4096
+OARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_SEPARATED_DTBO := true
-BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
-BOARD_RAMDISK_OFFSET := 0x01000000
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.memcg=1
+BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1 service_locator.enable=1
+BOARD_KERNEL_CMDLINE += swiotlb=2048 msm_rtb.filter=0x237
+BOARD_KERNEL_CMDLINE += loop.max_part=7 androidboot.usbcontroller=a600000.dwc3
+BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_BOOTIMG_HEADER_VERSION := 2
+BOARD_MKBOOTIMG_ARGS := --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
+BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_CLANG_VERSION := latest
-TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8150
+BOARD_KERNEL_IMAGE_NAME := Image
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+  TARGET_KERNEL_CONFIG := vayu_defconfig
+  TARGET_KERNEL_CLANG_VERSION := latest
+  TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8150
+  TARGET_KERNEL_VERSION := 4.14
+  TARGET_USES_UNCOMPRESSED_KERNEL := true
+endif
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 134217728
