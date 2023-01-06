@@ -5,12 +5,13 @@
     "branch": "lineage-20"
   },
   {
-    "repository": "crdroidandroid/android_kernel_xiaomi_sm8150",
-    "target_path": "kernel/xiaomi/sm8150"
+    "repository": "pa-vayu/android_kernel_xiaomi_vayu",
+    "target_path": "kernel/xiaomi/sm8150",
+    "branch": "topaz-orges"
   },
   {
     "repository": "crdroidandroid/proprietary_vendor_xiaomi",
     "target_path": "vendor/xiaomi",
-    "remote": "crdroid-gitlab"
+    "branch": "13.0"
   }
 ]
