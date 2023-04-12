@@ -158,10 +158,6 @@ PRODUCT_PACKAGES += \
     libpiex_shim \
     vendor.qti.hardware.camera.postproc@1.0.vendor
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/dumb_battery_workaround.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/dumb_battery_workaround.rc \
-    $(LOCAL_PATH)/rootdir/bin/dumb_battery_workaround.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/dumb_battery_workaround.sh
-
 # Consumer IR
 PRODUCT_PACKAGES += \
     android.hardware.ir@1.0-impl \
