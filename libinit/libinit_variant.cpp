@@ -51,6 +51,10 @@ void set_variant_props(const variant_info_t variant) {
     property_override("bluetooth.device.default_name", variant.marketname);
     property_override("vendor.usb.product_string", variant.marketname);
 
+    // SafetyNet
+    property_override("ro.build.version.security_patch", "2021-03-01");
+    property_override("ro.boot.verifiedbootstate", "green");
+
     if (variant.nfc)
         property_override(SKU_PROP, "nfc");
 }
